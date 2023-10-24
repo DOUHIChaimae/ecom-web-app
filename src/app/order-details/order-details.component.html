@@ -1,1 +1,43 @@
-<p>order-details works!</p>
+<div class="container mt-4" *ngIf="billsDetails">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">Order ID: {{billId}}</div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Order ID:</strong> {{billsDetails.id}}</li>
+            <li class="list-group-item"><strong>Date:</strong> {{billsDetails.billingDate | date : 'dd/MM/yyyy'}}</li>
+            <li class="list-group-item"><strong>Customer ID:</strong> {{billsDetails.customer.id}}</li>
+            <li class="list-group-item"><strong>Customer Name:</strong> {{billsDetails.customer.name}}</li>
+            <li class="list-group-item"><strong>Customer Email:</strong> {{billsDetails.customer.email}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white">Product Items</div>
+        <div class="card-body">
+          <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>Product Id</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pi of billsDetails.productItems">
+              <td>{{ pi.product.id }}</td>
+              <td>{{ pi.product.name }}</td>
+              <td>{{ pi.quantity }}</td>
+              <td>{{ pi.price | currency:'USD':'symbol' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
